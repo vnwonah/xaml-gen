@@ -1,0 +1,7 @@
+{
+  "name": "Xaml Gen",
+  "id": "751727507586338121",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html"
+}

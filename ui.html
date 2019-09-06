@@ -1,0 +1,34 @@
+<div>
+    <label>Select Frame</label>
+    <select id="frames" value="Select">
+      <option selected disabled>Choose Frame</option>
+    </select>
+</div>
+<br/>
+<button id="create">Generate Xaml</button>
+<button id="cancel">Cancel</button>
+<script>
+
+document.getElementById('create').onclick = () => {
+  const textbox = document.getElementById('count');
+  const count = parseInt(textbox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+onmessage = (event) => {
+
+  var nodes = event.data.pluginMessage;
+  var select = document.getElementById('frames');
+  for(let i = 0; i < nodes.length; i++){
+    
+    var opt = document.createElement('option');
+    opt.value = nodes[i];
+    opt.innerHTML = nodes[i];
+    select.appendChild(opt);
+    }
+}
+</script>
